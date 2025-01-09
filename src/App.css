@@ -221,7 +221,8 @@ select {
   content: attr(aria-current);
   position: fixed;
   background-color: #0f101b;
-  width: 28%;
+  width: 30%;
+  transform: translateY(0.1vh);
   left: 58%;
   text-align: center;
 }
