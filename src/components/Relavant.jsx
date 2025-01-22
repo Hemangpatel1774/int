@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { setRelavant } from "../redux/userAuthSlice";
 
-
 const Relavant = () => {
   const [currentSalary, setCurrentSalary] = useState('');
   const [expectedSalary, setExpectedSalary] = useState('');
@@ -14,6 +13,31 @@ const Relavant = () => {
   const [whyHireYou, setWhyHireYou] = useState('');
   const dispatch = useDispatch('');
   const navigate = useNavigate('');
+
+  const formatSalary = (value) => {
+    return value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const handleCurrentSalaryChange = (e) => {
+    const value = e.target.value.replace(/,/g, '');
+    if (!isNaN(value)) {
+      const formattedValue = formatSalary(value);
+      setCurrentSalary(formattedValue);
+    } else {
+      alert("Current salary must be a number.");
+    }
+  };
+
+  const handleExpectedSalaryChange = (e) => {
+    const value = e.target.value.replace(/,/g, '');
+    if (!isNaN(value)) {
+      const formattedValue = formatSalary(value);
+      setExpectedSalary(formattedValue);
+    } else {
+      alert("Expected salary must be a number.");
+    }
+  };
+
   const validateForm = () => {
     if (!currentSalary || !expectedSalary || !noticePeriod || !reasonForJobChange || !whyHireYou) {
       alert("All fields are required.");
@@ -23,40 +47,41 @@ const Relavant = () => {
       alert("The 'Why should we hire you?' section should not exceed 100 words.");
       return false;
     }
-        dispatch(setRelavant({expectedSalary: expectedSalary,currentSalary: currentSalary,noticePeriod: noticePeriod,jobChangeReason: reasonForJobChange , words: whyHireYou}));
+    dispatch(setRelavant({expectedSalary: expectedSalary, currentSalary: currentSalary, noticePeriod: noticePeriod, jobChangeReason: reasonForJobChange, words: whyHireYou}));
     return true;
   };
+
   const form = useSelector(state => state);
   useEffect(() => {
-    if(form.adharCard=='' || form.city=='' || form.zipCode=='' || form.address=='' ){
+    if(form.AdharCard=='' || form.City=='' || form.ZipCode=='' || form.Address=='' ){
       navigate('/additional')
     }
-  }, [])
+  }, []);
+
   const handleNextClick = (e) => {
     e.preventDefault();
     if (validateForm()) {
       navigate("/thankyou");
-      // Proceed to the next step
     }
   };
+
   return (
     <div className="relavant-info-area" style={{ height: '100svh' }}>
-      <img src={Logo} 
-onClick={()=> navigate('/')} />
+      <img src={Logo} onClick={() => navigate('/')} />
       <p>RELAVENT INFORMATION (FACTS ONLY)</p>
       <input
-        type="number"
-        maxLength={7}
+        type="text"
+        maxLength={10}
         placeholder="CURRENT SALARY"
         value={currentSalary}
-        onChange={(e) => setCurrentSalary(e.target.value)}
+        onChange={handleCurrentSalaryChange}
       />
       <input
-        type="number"
+        type="text"
         placeholder="EXPECTED SALARY"
         value={expectedSalary}
-        maxLength={7}
-        onChange={(e) => setExpectedSalary(e.target.value)}
+        maxLength={10}
+        onChange={handleExpectedSalaryChange}
       />
       <input
         type="text"

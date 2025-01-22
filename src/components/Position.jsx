@@ -11,12 +11,12 @@ const Position = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const handleFocus = (e) => {
-    setSelectedSkill(e.target.textContent);    
+    setSelectedSkill(e.target.textContent.split('(')[0]);    
     e.target.style.border = '2px solid rgb(59, 182, 223)';
   };
   const form = useSelector(state => state);
   useEffect(() => {
-    if(form.firmName=='' || form.secondName=='' || form.image=='' || form.email=='' || form.gender=='' || form.dob==''){
+    if(form.FirmName=='' || form.SecondName=='' || form.Image=='' || form.Email=='' || form.Gender=='' || form.Dob==''){
       navigate('/form')
     }
   }, [])
@@ -38,8 +38,12 @@ onClick={()=> navigate('/')} />
       <div className="position-area">
         <p>APPLYING FOR</p>
         <div>
-          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>FROND END DEVELOPER (EXP)</p><span>(HTML,CSS,JS,JQ,REACT JS, GSAP, THREEJS)</span></div>
-          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>FROND END DEVELOPER ( INTERN / FRESHER )</p><span>(HTML,CSS,JS,JQ,REACT JS, GSAP, THREEJS) NO STIPED / INR 5K*</span></div>
+          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>HR MANAGEMENT (EXP)</p></div>
+          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>VIDEO EDITOR (INTERN)</p></div>
+          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>DIGITAL MARKETING (INTERN)</p></div>
+          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>CONTENT CREATOR (INTERN)</p></div>
+          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>FRONT END DEVELOPER (EXP)</p><span>(HTML,CSS,JS,JQ,REACT JS, GSAP, THREEJS)</span></div>
+          <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>FRONT END DEVELOPER ( INTERN / FRESHER )</p><span>(HTML,CSS,JS,JQ,REACT JS, GSAP, THREEJS) NO STIPEND / INR 5K*</span></div>
           <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>BUSINESS DEVELOPMENT EXE (EXP)</p><span>(LEAD GENRATION, COLD EMAIL, CLOSER) IF YOU SELL, YOU BELONG HERE</span></div>
           <div className="skill" tabIndex="0" style={{ border: '2px solid #9A9A9A' }} onFocus={handleFocus} onBlur={handleBlur}><p>BUSINESS DEVELOPMENT EXE (INTERN / FRESHER)</p><span>(IF YOU CAN SELL, YOU BELONG HERE)</span></div>
         </div>

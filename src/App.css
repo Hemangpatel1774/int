@@ -253,6 +253,7 @@ select {
 }
 .position-area > p {
   font-size: 12px;
+  margin-bottom: 2vh;
   color: #fff;
   text-align: center;
 }

@@ -16,7 +16,7 @@ const Form = () => {
   const [email, setEmail] = useState("")
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const number = useSelector(state => state.mobileNumber);
+  const number = useSelector(state => state.MobileNumber);
   useEffect(() => {
     if(number==""){
       navigate('/Login')
@@ -105,7 +105,6 @@ const Form = () => {
       return;
     }
     dispatch(setForm({ firstName, lastName, image, email, gender, dob }));
-    console.log("this is working");
 
     navigate('/position');
   }
@@ -146,6 +145,7 @@ onClick={()=> navigate('/')} />
             type="date"
             aria-current={dob == "" ? "DOB" : ""}
             value={dob}
+            min={'2004-01-01'}
             onChange={(e) => setDob(e.target.value)}
           />
           <input

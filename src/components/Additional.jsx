@@ -37,7 +37,7 @@ const Additional = () => {
 
   const form = useSelector((state) => state);
   useEffect(() => {
-    if (form.position === '') {
+    if (form.Position === '') {
       navigate('/position');
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
